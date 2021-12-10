@@ -3,29 +3,29 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 function Graphique (props) {
   const {data} = props;
-  const liste = data.map((goat) => ({
-    heartrate : goat.heartrate,
-    heure : new Date(goat.timestamp).toLocaleTimeString('fr-FR'),
+  const liste = data.map((h) => ({
+    heartrate : h.heartrate,
+    heure : new Date(h.timestamp).toLocaleTimeString('fr-FR'),
   }))
     return (
       <ResponsiveContainer width="100%" height={200}>
         <LineChart
           width={500}
           height={300}
-          data={data}
+          data={liste}
           margin={{
-            top: 5,
+            top: 30,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 10,
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" />
-          <YAxis label="bpm" />
+          <XAxis dataKey="heure" />
+          <YAxis/>
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="heartrate" stroke="#82ca9d" />
+          <Line type="monotone" dataKey="heartrate" stroke="black" />
         </LineChart>
       </ResponsiveContainer>
     );
